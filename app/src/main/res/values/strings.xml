@@ -1,0 +1,131 @@
+<resources>
+    <string name="app_name">视频截图</string>
+    <string name="title_activity_make_picture">makePictureActivity</string>
+    <string name="main_information">
+        经常在网上看到别人制作的电影台词的长截图？想要自己制作一张？一张一张截图后剪切再拼接很麻烦？ \n
+        有了视频截取，你就可以边看视频边将想要截图的位置标记下来，当视频播放完后忙你的截图也已经处理完毕。\n
+        可用于制作电影图解 or 电影台词截图 or 精彩画面合集。 \n
+        还支持自定义裁剪范围，甚至是保留整张截图。\n\n\n
+        重要提示：\n
+        有很多应用平台出现了本app的二次打包版本，且被添加了强制下载的广告，虽然我一直在努力和平台交涉，但是始终无法让官方将其下架，所以，只能提醒各位用户，本app正版没有任何的广告，并且只用了 读取/写入储存卡 权限，如果你下载的版本有广告且权限不止上述两个，那么就是盗版了。别问我哪里能下到正版，我也无法！（目前发现的有盗版且经过交涉不下架甚至不回复的较大的平台有 百度的几个平台（手机助手，安卓市场，91）、应用汇。另外，我只在 魅族应用市场，百度开放平台，腾讯应用宝，酷安 上传了本应用。）\n
+        \t默认合成图片保存目录在 %1$s \n
+        \t但是我推荐直接在图库里面找，不过由于有时候图库刷新很慢，甚至某些ROM的图库直接不显示系统默认图片目录中的图片，所以如果在图库里找不到图片，请前往上述目录查找。\n
+        如不出意外。这将是最后一个版本，后续不会再出新功能，只更新修复BUG的小版本。\n
+        至于那些我承诺的功能，将会在在另一款app中实现，但具体情况还未定，详情请注意关注： https://equationl.com   -1.6\n
+        现实总是那么的令人无奈，看这样子新程序是出不来了。好吧，我承认，所谓新程序不过是我打算用来赚钱的，但是看现在这个情况时没有时间开发了。\n
+        也正如我所说的，这个app一开始就是写来自己用的，后来之所以会萌发出要把它一直更新下去，甚至靠它的来赚钱就是因为看到很多某市场的“开发者”，随便写个“helo world”都能“求捐赠”，我看的心痒痒，诚然，谁不喜欢钱呢？可是，我又觉得这样赚别人的钱有点昧良心了。所以呢，我就决定写一个不会昧自己良心的app（就是上一个版本说的“另一款app”）来求捐赠，甚至加广告，加内购。然而，时间总是没有啊，呵呵，为什么会没有时间呢？因为我不过是一个苦逼的高三狗，可是即使我是苦逼的高三狗也从来没有以这个为借口说过、干过什么，说到这里，不得不吐槽某市场，一大推人顶着“初中生”、“萌妹纸”的旗号来夺人眼球，诚然，你现在比同龄人牛逼的太多，但是，不要让你的狭隘葬送了你的谦虚，谁还没牛逼过呢？结果呢？有多少人一直牛逼下去了呢？说这么多必然会得罪到很多人，不过无所谓了，反正这真是我的最后一次更新了，即使有BUG也不修复了。   -1.7\n
+        \n\n\n
+        更新日志：\n
+        1.7\n
+        \t*增加选择视频后显示预览图\n
+        \t*增加对截图进行操作时的提示\n
+        \t*增加对返回上一步的支持（如果对截取的图片不满意可以直接按返回键继续截取而无需全部重新开始）\n
+        \t*优化合成时的实时预览，防止内存溢出\n
+        \t*优化UI\n
+        \t*修复快进/退时提示时间不准确的BUG\n
+        \t*修复对第一张截图操作失效的BUG\n
+        感谢以下用户的反馈：阿J（125****525@qq.com）、1576****755@139.com、\n
+        1.6\n
+        \t1.增加全屏播放时支持隐藏按钮\n
+        \t2.增加自定义水印位置\n
+        \t3.优化快进/快退时提示时间的显示与隐藏\n
+        1.5.1\n
+        \t1.改进图片压缩功能\n
+        \t2.修复因图片分辨率过低导致闪退的BUG\n
+        1.5\n
+        \t1.增加压缩图片功能，再也不怕生成的图片是巨无霸了\n
+        \t2.增加添加自定义水印功能，主权：这张图片是我的！\n
+        \t3.修复翻转后手势出错的 BUG，听说修复了什么BUG要具体写出来？\n
+        1.4.3\n
+        \t优化了一些小问题。 感谢1576****755@139.com 的反馈。\n
+        1.4.2\n
+        \t修复了android6.0以上机型无法保存图片的BUG。感谢 雲朵朵（1510****40@qq.com）的反馈。\n
+        1.4\n
+        \t*现在可以边标记边截取了，再也不用把宝贵的时间浪费在等待中了。\n
+        \t*顺道搞定几个无伤大雅的BUG\n
+        1.3\n
+        \t*软件更名为 “视频截图”\n
+        \t*视频截取页面增加横屏播放\n
+        \t*现在视频播放时支持手势操作了：双击，播放、暂停；左右滑动，快退、快进\n
+        \t*修复几个小BUG\n
+        1.2\n
+        \t*现在添加文字描述时可以自定义颜色和大小了\n
+        \t*修复当描述文字过长时不会自动换行的BUG\n
+        \t*增加分享功能，妈妈再也不怕我找不到生成的图片在哪里了\n
+        \t*顺手解决几个小BUG\n
+        1.1：\n
+        \t*新增添加文字描述功能\n
+        \t*重新画了一下图
+        \n\n\n
+        联系我： admin@likehide.com
+    </string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">设置</string>
+    <string name="title_activity_settings">设置</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">通用</string>
+
+    <string name="pref_title_watermark">添加水印</string>
+    <string name="pref_description_watermark">选择是否在图片合成后添加水印
+    </string>
+
+    <string name="pref_title_hide_btn">单击隐藏按钮</string>
+    <string name="pref_description_hide_btn">选择是否在全屏播放时单击屏幕显示\\隐藏按钮</string>
+
+    <string name="pref_title_monitored_show">实时预览</string>
+    <string name="pref_description_monitored_show">选择是否在合成图片时实时预览（开启后可能会内存溢出闪退，建议关闭）</string>
+
+    <string name="pref_title_reduce">压缩图片</string>
+    <string name="pref_description_reduce">选择是否在导出时压缩图片（仅降低质量，不改变分辨率）
+    </string>
+
+    <string name="pref_title_display_watermark">水印文字</string>
+    <string name="pref_default_display_watermark">Made by equationl</string>
+
+    <string name="pref_title_reduce_value">图片质量</string>
+    <string-array name="pref_reduce_list_titles">
+        <item>原图</item>
+        <item>9</item>
+        <item>8</item>
+        <item>7</item>
+        <item>6</item>
+        <item>5</item>
+        <item>4</item>
+        <item>3</item>
+        <item>2</item>
+        <item>1</item>
+        <item>最小</item>
+    </string-array>
+    <string-array name="pref_reduce_list_values">
+        <item>100</item>
+        <item>90</item>
+        <item>80</item>
+        <item>70</item>
+        <item>60</item>
+        <item>50</item>
+        <item>40</item>
+        <item>30</item>
+        <item>20</item>
+        <item>10</item>
+        <item>0</item>
+    </string-array>
+
+    <string name="pref_title_watermark_position">水印位置</string>
+    <string-array name="pref_watermark_position_titles">
+        <item>左上</item>
+        <item>中间</item>
+        <item>左下</item>
+    </string-array>
+    <string-array name="pref_watermark_position_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+</resources>

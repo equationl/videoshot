@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.equationl.videoshoter"
+    android:versionCode="11"
+    android:versionName="1.7" >
+
+    <uses-sdk
+        android:minSdkVersion="17"
+        android:targetSdkVersion="23" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:name="com.android.tools.fd.runtime.BootstrapApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme" >
+
+        <!-- android:hardwareAccelerated="false" 关闭硬件加速 -->
+
+        <activity
+            android:name="com.equationl.videoshoter.Main2Activity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.equationl.videoshoter.MainActivity" />
+        <activity
+            android:name="com.equationl.videoshoter.chooseActivity"
+            android:configChanges="keyboard|orientation|screenSize"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Fullscreen" />
+        <activity
+            android:name="com.equationl.videoshoter.makePictureActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name="com.equationl.videoshoter.buildPictureActivity" />
+        <activity
+            android:name="com.equationl.videoshoter.SettingsActivity"
+            android:label="@string/title_activity_settings" />
+    </application>
+
+</manifest>
