@@ -30,6 +30,7 @@ MERGED from [com.android.support:support-v4:23.4.0] F:\andoid\videoshoter\app\bu
 MERGED from [com.android.support:appcompat-v7:23.4.0] F:\andoid\videoshoter\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:animated-vector-drawable:23.4.0] F:\andoid\videoshoter\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\AndroidManifest.xml:7:5-20
 MERGED from [com.android.support:support-vector-drawable:23.4.0] F:\andoid\videoshoter\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\AndroidManifest.xml:7:5-20
+MERGED from [:FFmpegAndroid:] F:\andoid\videoshoter\app\build\intermediates\exploded-aar\FFmpegAndroid\AndroidManifest.xml:12:5-20
 	android:label
 		ADDED from F:\andoid\videoshoter\app\src\main\AndroidManifest.xml:13:9-41
 	android:supportsRtl
@@ -98,6 +99,7 @@ MERGED from [com.android.support:support-v4:23.4.0] F:\andoid\videoshoter\app\bu
 MERGED from [com.android.support:appcompat-v7:23.4.0] F:\andoid\videoshoter\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\AndroidManifest.xml:21:5-23:78
 MERGED from [com.android.support:animated-vector-drawable:23.4.0] F:\andoid\videoshoter\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\AndroidManifest.xml:5:5-44
 MERGED from [com.android.support:support-vector-drawable:23.4.0] F:\andoid\videoshoter\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\AndroidManifest.xml:5:5-43
+MERGED from [:FFmpegAndroid:] F:\andoid\videoshoter\app\build\intermediates\exploded-aar\FFmpegAndroid\AndroidManifest.xml:8:5-10:41
 	tools:overrideLibrary
 		ADDED from [com.android.support:appcompat-v7:23.4.0] F:\andoid\videoshoter\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\AndroidManifest.xml:23:9-75
 	android:targetSdkVersion

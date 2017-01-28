@@ -19,6 +19,7 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -62,19 +63,12 @@ public class buildPictureActivity extends AppCompatActivity {
 
         Log.i("filelist", fileList.toString());
 
-        //创建进度条对话框对象
         dialog = new ProgressDialog(this);
-        // 设置进度条的样式
         dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);// 设置样式
-        //对话框 不终止对话框(如果它为true 代表进度条的值是0)
         dialog.setIndeterminate(false);
-        //失去焦点的时候，不消失对话框
         dialog.setCancelable(false);
-        // 设置消息
         dialog.setMessage("正在处理...");
-        // 设置标题
         dialog.setTitle("请稍等");
-        // 进度条总大小
         dialog.setMax(fileList.length+1);
 
         Toast.makeText(getApplicationContext(),"请调整剪切字幕的位置",Toast.LENGTH_LONG).show();
@@ -146,6 +140,22 @@ public class buildPictureActivity extends AppCompatActivity {
                 }
             }
         });
+
+    }
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            if (isDone == 1) {
+                Intent intent = new Intent(buildPictureActivity.this, Main2Activity.class);
+                startActivity(intent);
+                finish();
+            }
+            return false;
+        }else {
+            return super.onKeyDown(keyCode, event);
+        }
 
     }
 

@@ -29,6 +29,9 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.equationl.videoshoter.videoImg.tools;
+import com.github.hiteshsondhi88.libffmpeg.ExecuteBinaryResponseHandler;
+import com.github.hiteshsondhi88.libffmpeg.FFmpeg;
+import com.github.hiteshsondhi88.libffmpeg.exceptions.FFmpegCommandAlreadyRunningException;
 
 import java.io.File;
 import java.io.IOException;
@@ -56,6 +59,9 @@ public class chooseActivity extends AppCompatActivity {
     Boolean isORIENTATION_LANDSCAPE = false;
     tools tool = new com.equationl.videoshoter.videoImg.tools();
     RelativeLayout.LayoutParams params;
+    FFmpeg ffmpeg;
+    String path;
+
 
     private static final int HandlerStatusHideTime = 10010;
 
@@ -74,13 +80,16 @@ public class chooseActivity extends AppCompatActivity {
         video_time = (TextView) findViewById(R.id.video_time);
 
         params = (RelativeLayout.LayoutParams) btn_shot.getLayoutParams();
+        ffmpeg = FFmpeg.getInstance(this);
 
         settings = PreferenceManager.getDefaultSharedPreferences(this);
 
         cleanExternalCache(this);    //清除上次产生的缓存图片
 
-        /*Bundle bundle = this.getIntent().getExtras();
-        String path = bundle.getString("path");  */
+        Bundle bundle = this.getIntent().getExtras();
+        path = bundle.getString("path");
+
+        Log.i("el_test: video path=", path);
 
         uri = getIntent().getData();
         videoview.setMediaController(new MediaController(this));
@@ -160,9 +169,13 @@ public class chooseActivity extends AppCompatActivity {
                 } catch (IOException e) {
                     Toast.makeText(getApplicationContext(),"保存截图失败"+e,Toast.LENGTH_LONG).show();
                 }   */
-                text_count.setText("标记/已截取："+ (pic_num+1) +"/"+ (shot_num+1));
+                text_count.setText("标记/已截取："+ (pic_num+1) +(shot_num));
                 mark_time.offer((long)videoview.getCurrentPosition());
                 pic_num++;
+                /*if (!thread.isAlive()) {
+                    thread = new Thread(new MyThread());
+                    thread.start();
+                }*/
                 if (!thread.isAlive()) {
                     thread = new Thread(new MyThread());
                     thread.start();
@@ -316,57 +329,70 @@ public class chooseActivity extends AppCompatActivity {
     public class MyThread implements Runnable {
         @Override
         public void run() {
-            Message msg;
-
-            MediaMetadataRetriever rev = new MediaMetadataRetriever();
-            rev.setDataSource(getApplicationContext(),uri);
             Long time;
+            while ((time = mark_time.peek()) != null) {
+                //Log.i("el_test", "in while loop");
+                if (!ffmpeg.isFFmpegCommandRunning()) {
+                    Log.i("el_test: ", "is running");
+                    //String videoPath = path;
+                    String outPathName = getExternalCacheDir().toString()+"/"+shot_num+".png";
 
-            //*********************************************TEST******************
-            /*for (long el=2000000;el<999999999;el+=1000000) {
-                Log.i("dead_test",el+" ");
-                Bitmap bitmap = rev.getFrameAtTime(el
-                        ,MediaMetadataRetriever.OPTION_CLOSEST_SYNC);
-                try {
-                    if(saveMyBitmap(bitmap,shot_num+"")) {
-                        msg = Message.obtain();
-                        msg.obj = "标记/已截取："+(pic_num)+"/"+(shot_num+1);
-                        msg.what = 1;
+                    //Log.i("el_test: output_path=", outPathName);
+                    //Log.i("el_test: posTime=", ""+(time/1000.0));
+
+                    String cmd[] = {"-ss", ""+(time/1000.0), "-i", path, "-y", "-f", "image2", "-t", "0.001", outPathName};
+                    try {
+                        ffmpeg.execute(cmd, new ExecuteBinaryResponseHandler() {
+                           /* @Override
+                            public void onFailure(String message) {
+                                Log.i("el_test: onFailure", message);
+                                Message msg = Message.obtain();
+                                msg.obj = "保存截图失败";
+                                msg.what = 2;
+                                handler.sendMessage(msg);
+                            }
+                            @Override
+                            public void onSuccess(String message) {
+                                shot_num++;
+                                mark_time.poll();
+                                Log.i("el_test: onSuccess", "");
+                                Message msg = Message.obtain();
+                                msg.obj = "标记/已截取2："+(pic_num)+"/"+(shot_num);
+                                msg.what = 1;
+                                handler.sendMessage(msg);
+                            }
+                            @Override
+                            public void onFinish() {
+                                shot_num++;
+                                mark_time.poll();
+                                Log.i("el_test: onFinish", "   ");
+                                Message msg = Message.obtain();
+                                msg.obj = "标记/已截取3："+(pic_num)+"/"+(shot_num);
+                                msg.what = 1;
+                                handler.sendMessage(msg);
+                            }   */
+                        });
+                    } catch (FFmpegCommandAlreadyRunningException e) {
+                        // Handle if FFmpeg is already running
+                        Message msg = Message.obtain();
+                        msg.obj = "保存截图失败 "+e;
+                        msg.what = 2;
                         handler.sendMessage(msg);
-                        shot_num++;
                     }
-                } catch (IOException e) {
-                    msg = Message.obtain();
-                    msg.obj = "保存截图失败"+e;
-                    msg.what = 2;
+                    shot_num++;
+                    mark_time.poll();
+                    Log.i("el_test: onSuccess", "");
+                    Message msg = Message.obtain();
+                    msg.obj = "标记/已截取："+(pic_num)+"/"+(shot_num);
+                    msg.what = 1;
                     handler.sendMessage(msg);
                 }
-            }   */
-
-            //*********************************************TEST END******************
-
-
-            while ((time = mark_time.poll()) != null) {
-                Log.i("el_test,获取截图 timeUs=", time+"");
-                Bitmap bitmap = rev.getFrameAtTime(time * 1000
-                        ,MediaMetadataRetriever.OPTION_CLOSEST);
-                try {
-                    if(saveMyBitmap(bitmap,shot_num+"")) {
-                        msg = Message.obtain();
-                        msg.obj = "标记/已截取："+(pic_num)+"/"+(shot_num+1);
-                        msg.what = 1;
-                        handler.sendMessage(msg);
-                        shot_num++;
-                    }
-                } catch (IOException e) {
-                    msg = Message.obtain();
-                    msg.obj = "保存截图失败"+e;
-                    msg.what = 2;
-                    handler.sendMessage(msg);
+                else {
+                    Log.i("el_test: ", "not running");
                 }
             }
             if (isDone) {
-                msg = Message.obtain();
+                Message msg = Message.obtain();
                 msg.obj = "";
                 msg.what = 3;
                 handler.sendMessage(msg);

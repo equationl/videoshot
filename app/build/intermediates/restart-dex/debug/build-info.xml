@@ -5,37 +5,43 @@
     density="xxhdpi"
     format="8"
     plugin-version="2.2.2"
-    timestamp="52368439155016"
+    timestamp="51230093524853"
     token="8845680902749415407"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="272" />
+        duration="420" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="57" />
+        duration="86" />
     <task
         name="verifier"
-        duration="12" />
+        duration="10" />
 
+    <artifact
+        location="F:\andoid\videoshoter\app\build\intermediates\instant-run-resources\resources-debug.ir.ap_"
+        type="RESOURCES" />
     <artifact
         location="F:\andoid\videoshoter\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_7\classes.dex"
         type="DEX" />
 
     <build
-        timestamp="48927188973428"
-        verifier="FULL_BUILD_REQUESTED" >
+        timestamp="43589350765767"
+        verifier="MANIFEST_FILE_CHANGE" >
         <artifact
             location="F:\andoid\videoshoter\app\build\outputs\apk\app-debug.apk"
             type="MAIN" />
     </build>
     <build
-        timestamp="52368439155016"
+        timestamp="51230093524853"
         verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="F:\andoid\videoshoter\app\build\intermediates\instant-run-resources\resources-debug.ir.ap_"
+            type="RESOURCES" />
         <artifact
             location="F:\andoid\videoshoter\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_7\classes.dex"
             type="DEX" />

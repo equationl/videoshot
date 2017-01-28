@@ -6,10 +6,12 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Message;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -30,17 +32,26 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class Main2Activity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+import com.github.hiteshsondhi88.libffmpeg.ExecuteBinaryResponseHandler;
+import com.github.hiteshsondhi88.libffmpeg.FFmpeg;
+import com.github.hiteshsondhi88.libffmpeg.LoadBinaryResponseHandler;
+import com.github.hiteshsondhi88.libffmpeg.exceptions.FFmpegCommandAlreadyRunningException;
+import com.github.hiteshsondhi88.libffmpeg.exceptions.FFmpegNotSupportedException;
+
+public class Main2Activity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     Button button_user;
     AlertDialog.Builder dialog;
     AlertDialog dialog2;
+    android.support.design.widget.CoordinatorLayout container;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
+        container =  (android.support.design.widget.CoordinatorLayout)findViewById(R.id.container);
+
 
         //判断权限
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -67,6 +78,74 @@ public class Main2Activity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        loadLib();
+
+        //*************************************************************
+        /*FFmpeg ffmpeg = FFmpeg.getInstance(this);
+        if (!ffmpeg.isFFmpegCommandRunning()) {
+            //String videoPath = path;
+            //String outPathName = getExternalCacheDir().toString()+"/"+shot_num+".jpg";
+            //String posTime = Long.toString(10000);
+
+            //Log.i("el_test: video_path=", path);
+
+            String cmd[] = {"-ss", "300.6","-i","/storage/emulated/0/0.mp4", "-y", "-f", "image2",  "-t", "0.001","/storage/emulated/0/Android/data/com.equationl.videoshoter/cache/10065.png"};
+                            //"-ss", ""+(time/1000.0), "-i", path, "-y", "-f", "image2", "-t", "0.001", outPathName
+            try {
+                ffmpeg.execute(cmd, new ExecuteBinaryResponseHandler() {
+                    @Override
+                    public void onFailure(String message) {
+                        Log.i("el_test: FAILURE", message);
+                        Snackbar snackbar = Snackbar.make(container, "加载FFmpeg失败", Snackbar.LENGTH_SHORT);
+                        snackbar.setAction("重试", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                loadLib();
+                            }
+                        });
+                        snackbar.setActionTextColor(Color.BLUE);
+                        snackbar.show();
+
+                    }
+                    @Override
+                    public void onSuccess(String message) {
+                        Log.i("el_test:  SUCCESS", message);
+                        // Handle if FFmpeg is not supported by device
+                        Snackbar snackbar = Snackbar.make(container, "很抱歉，无兼容您的手机的so库", Snackbar.LENGTH_LONG);
+                        snackbar.setAction("联系开发者", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                String versionName;
+                                int currentapiVersion=0;
+                                try {
+                                    PackageManager packageManager = getPackageManager();
+                                    PackageInfo packInfo = packageManager.getPackageInfo(getPackageName(),0);
+                                    versionName = packInfo.versionName;
+                                    currentapiVersion=android.os.Build.VERSION.SDK_INT;
+                                }
+                                catch (Exception ex) {
+                                    versionName = "NULL";
+                                }
+                                //Log.i("TEST","请在此描述您遇到的问题。\n---------请勿删除下面的内容------\n应用版本："+versionName+"\n"+"系统版本："+currentapiVersion);
+                                Intent data=new Intent(Intent.ACTION_SENDTO);
+                                data.setData(Uri.parse("mailto:admin@likehide.com"));
+                                data.putExtra(Intent.EXTRA_SUBJECT, "《视频截图》意见反馈");
+                                data.putExtra(Intent.EXTRA_TEXT, "请在此描述您遇到的问题。\n---------请勿删除下面的内容------\n应用版本："+versionName+"\n"+"系统版本："+currentapiVersion+"\n手机型号："+android.os.Build.MODEL);
+                                startActivity(data);
+                            }
+                        });
+                        snackbar.setActionTextColor(Color.BLUE);
+                        snackbar.show();
+
+                    }
+                });
+            } catch (FFmpegCommandAlreadyRunningException e) {
+                Log.i("el_test: RUNNING", ""+e);
+            }
+        }  */
+
+        //*****************************************************************8
 
         button_user.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -246,6 +325,54 @@ public class Main2Activity extends AppCompatActivity
         intent.setData(uri);
 
         startActivityForResult(intent, 123);
+    }
+
+    private void loadLib() {
+        //加载 ffmpeg-android-java
+        FFmpeg ffmpeg = FFmpeg.getInstance(this);
+        try {
+            ffmpeg.loadBinary(new LoadBinaryResponseHandler() {
+                @Override
+                public void onFailure() {
+                    Snackbar snackbar = Snackbar.make(container, "加载FFmpeg失败", Snackbar.LENGTH_LONG);
+                    snackbar.setAction("重试", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            loadLib();
+                        }
+                    });
+                    snackbar.setActionTextColor(Color.BLUE);
+                    snackbar.show();
+                }
+            });
+        } catch (FFmpegNotSupportedException e) {
+            // Handle if FFmpeg is not supported by device
+            Snackbar snackbar = Snackbar.make(container, "很抱歉，无兼容您的手机的so库", Snackbar.LENGTH_SHORT);
+            snackbar.setAction("联系开发者", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String versionName;
+                    int currentapiVersion=0;
+                    try {
+                        PackageManager packageManager = getPackageManager();
+                        PackageInfo packInfo = packageManager.getPackageInfo(getPackageName(),0);
+                        versionName = packInfo.versionName;
+                        currentapiVersion=android.os.Build.VERSION.SDK_INT;
+                    }
+                    catch (Exception ex) {
+                        versionName = "NULL";
+                    }
+                    //Log.i("TEST","请在此描述您遇到的问题。\n---------请勿删除下面的内容------\n应用版本："+versionName+"\n"+"系统版本："+currentapiVersion);
+                    Intent data=new Intent(Intent.ACTION_SENDTO);
+                    data.setData(Uri.parse("mailto:admin@likehide.com"));
+                    data.putExtra(Intent.EXTRA_SUBJECT, "《视频截图》意见反馈");
+                    data.putExtra(Intent.EXTRA_TEXT, "请在此描述您遇到的问题。\n---------请勿删除下面的内容------\n应用版本："+versionName+"\n"+"系统版本："+currentapiVersion+"\n手机型号："+android.os.Build.MODEL);
+                    startActivity(data);
+                }
+            });
+            snackbar.setActionTextColor(Color.BLUE);
+            snackbar.show();
+        }
     }
 
 }
