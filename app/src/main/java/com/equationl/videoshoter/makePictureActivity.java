@@ -58,6 +58,8 @@ public class makePictureActivity extends AppCompatActivity {
     private static final int HandlerStatusLongIsWorking = 10011;
     private static final int HandlerStatusIsLongPress = 10012;
 
+    public static makePictureActivity instance = null;   //FIXME  暂时这样吧，实在找不到更好的办法了
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +79,8 @@ public class makePictureActivity extends AppCompatActivity {
         }
 
         setContentView(R.layout.activity_make_picture);
+
+        instance = this;
 
         imagview = (ImageView) findViewById(R.id.imageView);
         btn_start = (Button) findViewById(R.id.button_start);

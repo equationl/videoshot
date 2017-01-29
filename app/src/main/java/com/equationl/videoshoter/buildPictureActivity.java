@@ -100,6 +100,9 @@ public class buildPictureActivity extends AppCompatActivity {
                     imageTest.setImageBitmap(bm_test);
                 }
                 else {
+                    chooseActivity.instance.finish();
+                    makePictureActivity.instance.finish();
+                    Main2Activity.instance.finish();
                     Intent intent = new Intent(buildPictureActivity.this, Main2Activity.class);
                     startActivity(intent);
                     finish();
@@ -148,6 +151,9 @@ public class buildPictureActivity extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK)) {
             if (isDone == 1) {
+                chooseActivity.instance.finish();
+                makePictureActivity.instance.finish();
+                Main2Activity.instance.finish();
                 Intent intent = new Intent(buildPictureActivity.this, Main2Activity.class);
                 startActivity(intent);
                 finish();
@@ -387,11 +393,11 @@ public class buildPictureActivity extends AppCompatActivity {
         try {
             if (isReduce) {
                 int quality = Integer.parseInt(settings.getString("reduce_value","100"));
-                tool.saveBitmap2png(bmp,bitName, Environment.getExternalStoragePublicDirectory(
+                savePath = tool.saveBitmap2png(bmp,bitName, Environment.getExternalStoragePublicDirectory(
                         Environment.DIRECTORY_PICTURES), true, quality);
             }
             else {
-                tool.saveBitmap2png(bmp,bitName, Environment.getExternalStoragePublicDirectory(
+                savePath = tool.saveBitmap2png(bmp,bitName, Environment.getExternalStoragePublicDirectory(
                         Environment.DIRECTORY_PICTURES));
             }
             flag = true;

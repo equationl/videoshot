@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 
+import com.github.hiteshsondhi88.libffmpeg.FFmpeg;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -12,8 +14,10 @@ import java.io.FileOutputStream;
 public class tools {
     /**
     * 将 bitmap 保存为png
+     *
+     * @return File 返回保存的文件
     * */
-    public void saveBitmap2png(Bitmap bmp, String bitName,File savePath,boolean isReduce, int quality) throws Exception {
+    public File saveBitmap2png(Bitmap bmp, String bitName,File savePath,boolean isReduce, int quality) throws Exception {
         File f;
         Bitmap.CompressFormat imgFormat;
 
@@ -32,9 +36,11 @@ public class tools {
         bmp.compress(imgFormat, quality, fOut);
         fOut.flush();
         fOut.close();
+
+        return f;
     }
-    public void saveBitmap2png(Bitmap bmp, String bitName,File savePath) throws Exception {
-        this.saveBitmap2png(bmp, bitName, savePath, false, 100);
+    public File saveBitmap2png(Bitmap bmp, String bitName, File savePath) throws Exception {
+        return this.saveBitmap2png(bmp, bitName, savePath, false, 100);
     }
 
     /**

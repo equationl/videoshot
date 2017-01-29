@@ -1,4 +1,4 @@
-#Sat Jan 28 23:13:42 CST 2017
+#Mon Jan 30 01:23:22 CST 2017
 base.0=F\:\\andoid\\videoshoter\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\instant-run_8127fe7c76a38aa6bef701d725c59700513fcc41
 renamed.1=classes.dex
 renamed.0=classes2.dex

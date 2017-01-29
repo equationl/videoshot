@@ -2,6 +2,7 @@ package com.equationl.videoshoter;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -11,6 +12,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.os.Message;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
@@ -20,6 +22,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -45,10 +48,18 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
     AlertDialog dialog2;
     android.support.design.widget.CoordinatorLayout container;
 
+    public static Main2Activity instance = null;    //FIXME  暂时这样吧，实在找不到更好的办法了
+
+    private static final int HandlerStatusLoadLibsFailure = 0;
+    private static final int HandlerStatusFFmpegNotSupported = 1;
+    private static final int HandlerStatusPackageNameNotRight = 2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
+        instance = this;
 
         container =  (android.support.design.widget.CoordinatorLayout)findViewById(R.id.container);
 
@@ -79,7 +90,10 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        loadLib();
+
+        Thread t = new Thread(new Main2Activity.MyThread());
+        t.start();
+        //loadLib();
 
         //*************************************************************
         /*FFmpeg ffmpeg = FFmpeg.getInstance(this);
@@ -157,6 +171,19 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
         });
     }
 
+    /*@Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            //处理返回键，防止从其他activity跳转到这里时按返回键又回去了
+            //FIXME 暂时这样，最好还是跳转时杀掉进程
+            ActivityManager manager = (ActivityManager)this.getSystemService(ACTIVITY_SERVICE); //获取应用程序管理器
+            manager.killBackgroundProcesses(getPackageName()); //强制结束当前应用程序
+            return true;
+        }else {
+            return super.onKeyDown(keyCode, event);
+        }
+    }   */
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -169,6 +196,7 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
             intent.putExtras(bundle);
             intent.setData(uri);
             startActivity(intent);
+            //finish();
         }
 
         //权限判断
@@ -283,8 +311,6 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
                     // 判断用户是否 点击了不再提醒。(检测该权限是否还可以申请)
                     boolean b = shouldShowRequestPermissionRationale(permissions[0]);
                     if (!b) {
-                        // 用户还是想用我的 APP 的
-                        // 提示用户去应用设置界面手动开启权限
                         showDialogTipUserGoToAppSettting();
                     } else
                         finish();
@@ -296,7 +322,6 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
     }
 
     // 提示用户去应用设置界面手动开启权限
-
     private void showDialogTipUserGoToAppSettting() {
         dialog2 = new AlertDialog.Builder(this)
                 .setTitle("存储权限不可用")
@@ -334,6 +359,20 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
             ffmpeg.loadBinary(new LoadBinaryResponseHandler() {
                 @Override
                 public void onFailure() {
+                    handler.sendEmptyMessage(HandlerStatusLoadLibsFailure);
+                }
+            });
+        } catch (FFmpegNotSupportedException e) {
+            // Handle if FFmpeg is not supported by device
+            handler.sendEmptyMessage(HandlerStatusFFmpegNotSupported);
+        }
+    }
+
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case HandlerStatusLoadLibsFailure:
                     Snackbar snackbar = Snackbar.make(container, "加载FFmpeg失败", Snackbar.LENGTH_LONG);
                     snackbar.setAction("重试", new View.OnClickListener() {
                         @Override
@@ -343,36 +382,56 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
                     });
                     snackbar.setActionTextColor(Color.BLUE);
                     snackbar.show();
+                    break;
+                case HandlerStatusFFmpegNotSupported:
+                    Snackbar snackbar2 = Snackbar.make(container, "很抱歉，无兼容您的手机的so库", Snackbar.LENGTH_SHORT);
+                    snackbar2.setAction("联系开发者", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            String versionName;
+                            int currentapiVersion=0;
+                            try {
+                                PackageManager packageManager = getPackageManager();
+                                PackageInfo packInfo = packageManager.getPackageInfo(getPackageName(),0);
+                                versionName = packInfo.versionName;
+                                currentapiVersion=android.os.Build.VERSION.SDK_INT;
+                            }
+                            catch (Exception ex) {
+                                versionName = "NULL";
+                            }
+                            //Log.i("TEST","请在此描述您遇到的问题。\n---------请勿删除下面的内容------\n应用版本："+versionName+"\n"+"系统版本："+currentapiVersion);
+                            Intent data=new Intent(Intent.ACTION_SENDTO);
+                            data.setData(Uri.parse("mailto:admin@likehide.com"));
+                            data.putExtra(Intent.EXTRA_SUBJECT, "《视频截图》意见反馈");
+                            data.putExtra(Intent.EXTRA_TEXT, "请在此描述您遇到的问题。\n---------请勿删除下面的内容------\n应用版本："+versionName+"\n"+"系统版本："+currentapiVersion+"\n手机型号："+android.os.Build.MODEL);
+                            startActivity(data);
+                        }
+                    });
+                    snackbar2.setActionTextColor(Color.BLUE);
+                    snackbar2.show();
+                    break;
+                case HandlerStatusPackageNameNotRight:
+                    //Toast.makeText(getApplicationContext(),"您下载的是非法打包版本，建议您前往正规渠道重新下载", Toast.LENGTH_LONG).show();
+                    Snackbar snackbar3 = Snackbar.make(container, "您下载的是非法打包版本，建议您前往正规渠道重新下载", Snackbar.LENGTH_LONG);
+                    snackbar3.show();
+                    break;
+            }
+
+        }
+    };
+
+    public class MyThread implements Runnable {
+        @Override
+        public void run() {
+            loadLib();
+            try {
+                String pkName = getApplicationContext().getPackageName();
+                if (!pkName.equals("com.equationl.videoshoter")) {
+                    handler.sendEmptyMessage(HandlerStatusPackageNameNotRight);
                 }
-            });
-        } catch (FFmpegNotSupportedException e) {
-            // Handle if FFmpeg is not supported by device
-            Snackbar snackbar = Snackbar.make(container, "很抱歉，无兼容您的手机的so库", Snackbar.LENGTH_SHORT);
-            snackbar.setAction("联系开发者", new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    String versionName;
-                    int currentapiVersion=0;
-                    try {
-                        PackageManager packageManager = getPackageManager();
-                        PackageInfo packInfo = packageManager.getPackageInfo(getPackageName(),0);
-                        versionName = packInfo.versionName;
-                        currentapiVersion=android.os.Build.VERSION.SDK_INT;
-                    }
-                    catch (Exception ex) {
-                        versionName = "NULL";
-                    }
-                    //Log.i("TEST","请在此描述您遇到的问题。\n---------请勿删除下面的内容------\n应用版本："+versionName+"\n"+"系统版本："+currentapiVersion);
-                    Intent data=new Intent(Intent.ACTION_SENDTO);
-                    data.setData(Uri.parse("mailto:admin@likehide.com"));
-                    data.putExtra(Intent.EXTRA_SUBJECT, "《视频截图》意见反馈");
-                    data.putExtra(Intent.EXTRA_TEXT, "请在此描述您遇到的问题。\n---------请勿删除下面的内容------\n应用版本："+versionName+"\n"+"系统版本："+currentapiVersion+"\n手机型号："+android.os.Build.MODEL);
-                    startActivity(data);
-                }
-            });
-            snackbar.setActionTextColor(Color.BLUE);
-            snackbar.show();
+            } catch (Exception e) {
+                handler.sendEmptyMessage(HandlerStatusPackageNameNotRight);
+            }
         }
     }
-
 }
