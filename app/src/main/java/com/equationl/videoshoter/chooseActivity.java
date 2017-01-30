@@ -355,7 +355,7 @@ public class chooseActivity extends AppCompatActivity {
                             public void onFailure(String message) {
                                 Log.i("el_test: onFailure", message);
                                 Message msg = Message.obtain();
-                                msg.obj = "保存截图失败";
+                                msg.obj = "保存截图失败"+message;
                                 msg.what = 2;
                                 handler.sendMessage(msg);
                             }

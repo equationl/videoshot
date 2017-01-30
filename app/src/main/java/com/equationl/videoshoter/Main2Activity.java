@@ -35,6 +35,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.equationl.videoshoter.videoImg.tools;
 import com.github.hiteshsondhi88.libffmpeg.ExecuteBinaryResponseHandler;
 import com.github.hiteshsondhi88.libffmpeg.FFmpeg;
 import com.github.hiteshsondhi88.libffmpeg.LoadBinaryResponseHandler;
@@ -47,6 +48,7 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
     AlertDialog.Builder dialog;
     AlertDialog dialog2;
     android.support.design.widget.CoordinatorLayout container;
+    tools tool;
 
     public static Main2Activity instance = null;    //FIXME  暂时这样吧，实在找不到更好的办法了
 
@@ -63,6 +65,7 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
 
         container =  (android.support.design.widget.CoordinatorLayout)findViewById(R.id.container);
 
+        tool = new tools();
 
         //判断权限
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -189,7 +192,8 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
             Uri uri = data.getData();
-            String path = uri.getPath();
+            //String path = uri.getPath();
+            String path = tool.getImageAbsolutePath(this, uri);
             Intent intent = new Intent(Main2Activity.this, chooseActivity.class);
             Bundle bundle = new Bundle();
             bundle.putString("path", path);

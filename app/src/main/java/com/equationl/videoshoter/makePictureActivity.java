@@ -388,8 +388,14 @@ public class makePictureActivity extends AppCompatActivity {
 
         boolean flag;
         try {
-           tool.saveBitmap2png(bmp,bitName, getExternalCacheDir());
-            flag = true;
+            if (settings.getBoolean("isShotToJpg", true)) {
+                tool.saveBitmap2png(bmp,bitName, getExternalCacheDir(), true, 100);
+                flag = true;
+            }
+            else {
+                tool.saveBitmap2png(bmp,bitName, getExternalCacheDir());
+                flag = true;
+            }
         } catch (Exception e) {
             flag = false;
         }

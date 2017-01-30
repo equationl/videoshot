@@ -87,7 +87,7 @@
     <string name="pref_description_shot_jpg">选择是否在截取图片时保存为jpg（使用jpg能大幅减少图片大小，但是质量会略微有所降低）</string>
 
     <string name="pref_title_hide_btn">单击隐藏按钮</string>
-    <string name="pref_description_hide_btn">选择是否在全屏播放时单击屏幕显示\\隐藏按钮</string>
+    <string name="pref_description_hide_btn">选择是否在全屏播放时单击屏幕显示/隐藏按钮</string>
 
     <string name="pref_title_monitored_show">实时预览</string>
     <string name="pref_description_monitored_show">选择是否在合成图片时实时预览（开启后可能会内存溢出闪退，建议关闭）</string>
