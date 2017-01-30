@@ -285,8 +285,16 @@ public class makePictureActivity extends AppCompatActivity {
         return bm; */
 
         Bitmap bm = null;
+        String extension;
+        if (settings.getBoolean("isShotToJpg", true)) {
+            extension = "jpg";
+        }
+        else {
+            extension = "png";
+        }
+
         try {
-            bm = tool.getBitmapFromFile(no, getExternalCacheDir());
+            bm = tool.getBitmapFromFile(no, getExternalCacheDir(),extension);
         }  catch (Exception e) {
             Toast.makeText(getApplicationContext(),"获取截图失败"+e,Toast.LENGTH_LONG).show();
         }

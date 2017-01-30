@@ -73,7 +73,7 @@ public class buildPictureActivity extends AppCompatActivity {
 
         Toast.makeText(getApplicationContext(),"请调整剪切字幕的位置",Toast.LENGTH_LONG).show();
 
-        bm_test = getBitmap(0).copy(Bitmap.Config.ARGB_8888,true);
+        bm_test = getCutImg().copy(Bitmap.Config.ARGB_8888,true);
 
         canvas = new Canvas(bm_test);
         paint = new Paint();
@@ -89,7 +89,7 @@ public class buildPictureActivity extends AppCompatActivity {
         btn_up.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (isDone == 0) {
-                    bm_test = getBitmap(1).copy(Bitmap.Config.ARGB_8888,true);
+                    bm_test = getCutImg().copy(Bitmap.Config.ARGB_8888,true);
                     canvas = new Canvas(bm_test);
                     startY = startY-8;
                     if (startY < 0) {
@@ -113,7 +113,7 @@ public class buildPictureActivity extends AppCompatActivity {
         btn_down.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (isDone == 0) {
-                    bm_test = getBitmap(1).copy(Bitmap.Config.ARGB_8888,true);
+                    bm_test = getCutImg().copy(Bitmap.Config.ARGB_8888,true);
                     canvas = new Canvas(bm_test);
                     startY = startY+8;
                     if (startY > bHeight) {
@@ -181,13 +181,30 @@ public class buildPictureActivity extends AppCompatActivity {
 
         return bm;  */
         Bitmap bm = null;
+        String extension;
+        if (settings.getBoolean("isShotToJpg", true)) {
+            extension = "jpg";
+        }
+        else {
+            extension = "png";
+        }
+
         try {
-            bm = tool.getBitmapFromFile(no, getExternalCacheDir());
+            bm = tool.getBitmapFromFile(no, getExternalCacheDir(),extension);
         }  catch (Exception e) {
             Toast.makeText(getApplicationContext(),"获取截图失败"+e,Toast.LENGTH_LONG).show();
         }
 
         return bm;
+    }
+
+    private Bitmap getCutImg() {
+        for (int i=0;i<fileList.length;i++) {
+            if (fileList[i].equals("cut")) {
+                return getBitmap(i);
+            }
+        }
+        return getBitmap(0);
     }
 
     private Handler handler = new Handler() {

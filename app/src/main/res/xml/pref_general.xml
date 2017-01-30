@@ -53,4 +53,10 @@
         android:summary="@string/pref_description_monitored_show"
         android:title="@string/pref_title_monitored_show" />
 
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="isShotToJpg"
+        android:summary="@string/pref_description_shot_jpg"
+        android:title="@string/pref_title_shot_jpg" />
+
 </PreferenceScreen>

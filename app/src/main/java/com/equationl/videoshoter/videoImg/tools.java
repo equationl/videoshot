@@ -1,11 +1,11 @@
 package com.equationl.videoshoter.videoImg;
 
 
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-
-import com.github.hiteshsondhi88.libffmpeg.FFmpeg;
+import android.preference.PreferenceManager;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -59,8 +59,8 @@ public class tools {
     /**
      * 从文件获取图片的bitmap
     * */
-        public Bitmap getBitmapFromFile(int no, File dirPath) throws Exception {
-        File path = new File(dirPath, +no+""+".png");
+    public Bitmap getBitmapFromFile(int no, File dirPath, String extension) throws Exception {
+        File path = new File(dirPath, +no+""+"."+extension);
         FileInputStream f;
         Bitmap bm = null;
         f = new FileInputStream(path);

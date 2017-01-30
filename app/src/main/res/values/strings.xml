@@ -22,9 +22,11 @@
         \t*增加选择视频后显示预览图\n
         \t*增加对截图进行操作时的提示\n
         \t*增加对返回上一步的支持（如果对截取的图片不满意可以直接按返回键继续截取而无需全部重新开始）\n
+        \t*增加对截取图片为jpg的支持（截取为jpg能大幅降低图片占用空间大小）\n
         \t*优化合成时的实时预览，防止内存溢出\n
         \t*优化UI\n
         \t*优化不同界面间的切换逻辑\n
+        \t*优化调整截取字幕时的图片显示逻辑\n
         \t*修复快进/退时提示时间不准确的BUG\n
         \t*修复对第一张截图操作失效的BUG\n
         \t*修复截取时间对不上的BUG\n
@@ -80,6 +82,9 @@
     <string name="pref_title_watermark">添加水印</string>
     <string name="pref_description_watermark">选择是否在图片合成后添加水印
     </string>
+
+    <string name="pref_title_shot_jpg">截取为jpg</string>
+    <string name="pref_description_shot_jpg">选择是否在截取图片时保存为jpg（使用jpg能大幅减少图片大小，但是质量会略微有所降低）</string>
 
     <string name="pref_title_hide_btn">单击隐藏按钮</string>
     <string name="pref_description_hide_btn">选择是否在全屏播放时单击屏幕显示\\隐藏按钮</string>

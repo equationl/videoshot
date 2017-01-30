@@ -30,4 +30,4 @@ proguard/
 
 .gradle/
 
-/app/build/*
+/app/build/

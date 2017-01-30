@@ -44,6 +44,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class chooseActivity extends AppCompatActivity {
     VideoView videoview;
@@ -51,7 +52,7 @@ public class chooseActivity extends AppCompatActivity {
     Button btn_status,btn_done,btn_shot;
     TextView text_count,video_time;
     Uri uri;
-    Queue<Long> mark_time = new LinkedList<Long>();
+    LinkedBlockingQueue<Long> mark_time = new LinkedBlockingQueue<Long>();
     int pic_num=0, isFirstPlay=1, shot_num=0;
     GestureDetector mGestureDetector;
     Thread thread = new Thread(new MyThread());
@@ -63,6 +64,7 @@ public class chooseActivity extends AppCompatActivity {
     RelativeLayout.LayoutParams params;
     FFmpeg ffmpeg;
     String path;
+    private boolean isShotFinish=false;
 
     public static chooseActivity instance = null;    //FIXME  暂时这样吧，实在找不到更好的办法了
 
@@ -178,10 +180,6 @@ public class chooseActivity extends AppCompatActivity {
                 text_count.setText("标记/已截取："+ (pic_num+1)+"/"+(shot_num));
                 mark_time.offer((long)videoview.getCurrentPosition());
                 pic_num++;
-                /*if (!thread.isAlive()) {
-                    thread = new Thread(new MyThread());
-                    thread.start();
-                }*/
                 if (!thread.isAlive()) {
                     thread = new Thread(new MyThread());
                     thread.start();
@@ -318,7 +316,8 @@ public class chooseActivity extends AppCompatActivity {
                     text_count.setText(msg.obj.toString());
                     break;
                 case 2:
-                    text_count.setText(msg.obj.toString());
+                    //text_count.setText(msg.obj.toString());
+                    Toast.makeText(getApplicationContext(), (String)msg.obj,Toast.LENGTH_LONG).show();
                     break;
                 case 3:
                     Intent intent = new Intent(chooseActivity.this, makePictureActivity.class);
@@ -336,9 +335,19 @@ public class chooseActivity extends AppCompatActivity {
         @Override
         public void run() {
             Long time;
-            while ((time = mark_time.peek()) != null) {
+            while ((time = mark_time.poll()) != null) {
                 if (!ffmpeg.isFFmpegCommandRunning()) {
-                    String outPathName = getExternalCacheDir().toString()+"/"+shot_num+".png";
+                    isShotFinish = false;
+                    Log.i("el_test", "time="+time);
+                    Log.i("el_test", "shot_num="+shot_num);
+                    String outPathName;
+                    if (settings.getBoolean("isShotToJpg",true)) {
+                        outPathName = getExternalCacheDir().toString()+"/"+shot_num+".jpg";
+                    }
+                    else {
+                        outPathName = getExternalCacheDir().toString()+"/"+shot_num+".png";
+                    }
+
                     String cmd[] = {"-ss", ""+(time/1000.0), "-i", path, "-y", "-f", "image2", "-t", "0.001", outPathName};
                     try {
                         ffmpeg.execute(cmd, new ExecuteBinaryResponseHandler() {
@@ -353,12 +362,16 @@ public class chooseActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(String message) {
                                 shot_num++;
-                                mark_time.poll();
+                                //mark_time.poll();
                                 Log.i("el_test:", "onSuccess");
                                 Message msg = Message.obtain();
-                                msg.obj = "标记/已截取2："+(pic_num)+"/"+(shot_num);
+                                msg.obj = "标记/已截取："+(pic_num)+"/"+(shot_num);
                                 msg.what = 1;
                                 handler.sendMessage(msg);
+                            }
+                            @Override
+                            public void onFinish() {
+                                isShotFinish = true;
                             }
                         });
                     } catch (FFmpegCommandAlreadyRunningException e) {
@@ -367,9 +380,16 @@ public class chooseActivity extends AppCompatActivity {
                         msg.what = 2;
                         handler.sendMessage(msg);
                     }
+                    //阻塞等待截取结果
+                    while (!isShotFinish) {
+                        try {
+                            Thread.sleep(100);
+                        }
+                        catch (InterruptedException e) {}
+                    }
                 }
                 else {
-                    Log.i("el_test: ", "running");
+                    Log.i("el_test", "running");
                 }
             }
             if (isDone) {
