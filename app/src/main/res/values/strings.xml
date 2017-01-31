@@ -138,4 +138,5 @@
         <item>2</item>
         <item>3</item>
     </string-array>
+    <string name="title_activity_command">自定义FFmpeg命令</string>
 </resources>

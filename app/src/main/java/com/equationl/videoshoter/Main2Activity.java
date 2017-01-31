@@ -251,7 +251,9 @@ public class Main2Activity extends AppCompatActivity implements NavigationView.O
             dialog.setIcon(R.mipmap.ic_launcher);
             dialog.create().show();
         } else if (id == R.id.nav_more) {
-            Toast.makeText(getApplicationContext(),"敬请期待",Toast.LENGTH_LONG).show();
+//            Toast.makeText(getApplicationContext(),"敬请期待",Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(Main2Activity.this, commandActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_feedback) {
             String versionName;
             int currentapiVersion=0;

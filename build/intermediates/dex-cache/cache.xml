@@ -11,13 +11,22 @@
         <dex dex="F:\andoid\videoshoter\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-23.4.0_89305696a8fa4c40833eece851c1b57c995533bb\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="E:\androidsdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="F:\andoid\videoshoter\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.4.0\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
-        <dex dex="F:\andoid\videoshoter\app\build\intermediates\pre-dexed\release\support-annotations-23.4.0_89305696a8fa4c40833eece851c1b57c995533bb.jar" />
+        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
+        <dex dex="F:\andoid\videoshoter\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-23.4.0_0cac3fec5d485bc16ba59cc2395a5dae77b61359\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\andoid\videoshoter\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="23.0.3"
+        sha1="5ab3b042068a8d9b45a79d420e2c791b32465bfa">
+        <dex dex="F:\andoid\videoshoter\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_8127fe7c76a38aa6bef701d725c59700513fcc41\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -36,33 +45,6 @@
         revision="23.0.3"
         sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
         <dex dex="F:\andoid\videoshoter\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-23.4.0_eca096254a646b4c10ba95fc00f5f953923334d8\classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="F:\andoid\videoshoter\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\libs\internal_impl-23.4.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.3"
-        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
-        <dex dex="F:\andoid\videoshoter\app\build\intermediates\pre-dexed\release\internal_impl-23.4.0_b4e7beb72d255056df977500c7b6e6fb3c1cedde.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="F:\andoid\videoshoter\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.3"
-        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
-        <dex dex="F:\andoid\videoshoter\app\build\intermediates\pre-dexed\release\com.android.support-animated-vector-drawable-23.4.0_9a09e3bb68e024c8e8e466edd57325069bf1a1e6.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="F:\andoid\videoshoter\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.3"
-        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
-        <dex dex="F:\andoid\videoshoter\app\build\intermediates\pre-dexed\release\com.android.support-support-v4-23.4.0_eca096254a646b4c10ba95fc00f5f953923334d8.jar" />
     </item>
     <item
         is-multidex="true"
@@ -92,69 +74,6 @@
         <dex dex="F:\andoid\videoshoter\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-23.4.0_ac0ca5cc04b2aaa4128ff3dea323e3a7082ed4dc\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="F:\andoid\videoshoter\app\build\intermediates\exploded-aar\com.android.support\design\23.4.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.3"
-        sha1="5326d9a850d491714fef8cbfaa9ea3416f0bf0d2">
-        <dex dex="F:\andoid\videoshoter\app\build\intermediates\pre-dexed\release\com.android.support-design-23.4.0_ac0ca5cc04b2aaa4128ff3dea323e3a7082ed4dc.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="F:\andoid\videoshoter\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.3"
-        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
-        <dex dex="F:\andoid\videoshoter\app\build\intermediates\pre-dexed\release\com.android.support-appcompat-v7-23.4.0_d56e7e737cdf7ec00e2c48cbbbe0ec9fa1aa25ee.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="F:\andoid\videoshoter\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
-        <dex dex="F:\andoid\videoshoter\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-23.4.0_0cac3fec5d485bc16ba59cc2395a5dae77b61359\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="F:\andoid\videoshoter\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="23.0.3"
-        sha1="5ab3b042068a8d9b45a79d420e2c791b32465bfa">
-        <dex dex="F:\andoid\videoshoter\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_8127fe7c76a38aa6bef701d725c59700513fcc41\classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="F:\andoid\videoshoter\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.4.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.3"
-        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
-        <dex dex="F:\andoid\videoshoter\app\build\intermediates\pre-dexed\release\com.android.support-recyclerview-v7-23.4.0_0cac3fec5d485bc16ba59cc2395a5dae77b61359.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="F:\andoid\videoshoter\app\build\intermediates\exploded-aar\FFmpegAndroid\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.3"
-        sha1="722acae466ccefebedf8a6631384e83bf3139f7c">
-        <dex dex="F:\andoid\videoshoter\app\build\intermediates\pre-dexed\release\intermediates-exploded-aar-FFmpegAndroid_744c2c7a0c6ab5d4c73c6d2d7ca836cff917bc8f.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="F:\andoid\videoshoter\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="23.0.3"
-        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
-        <dex dex="F:\andoid\videoshoter\app\build\intermediates\pre-dexed\release\com.android.support-support-vector-drawable-23.4.0_50132d090d4cd257702d1722844c48b93fbb440c.jar" />
-    </item>
-    <item
         is-multidex="true"
         jar="F:\andoid\videoshoter\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
         jumboMode="true"
@@ -178,7 +97,7 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="8946974f0f66ebe3f7b780f64750ff4d42c8dedc">
+        sha1="646ab064814f6018f3b76e1870398de4c158a53d">
         <dex dex="F:\andoid\videoshoter\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_a18a8be45b366c89c79e39d932aeb97f2ead8139\classes.dex" />
     </item>
 

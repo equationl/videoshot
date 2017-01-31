@@ -8,8 +8,8 @@ android {
         applicationId "com.equationl.videoshoter"
         minSdkVersion 17
         targetSdkVersion 23
-        versionCode 11
-        versionName "1.7"
+        versionCode 12
+        versionName "1.7.1 for xiaomi"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
