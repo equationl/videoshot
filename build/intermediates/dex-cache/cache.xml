@@ -3,87 +3,6 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\lenovo\.android\build-cache\35a7964e84b7d81b2e87369092dc3d72d63f7fa8\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="722acae466ccefebedf8a6631384e83bf3139f7c">
-        <dex dex="F:\andoid\videoshoter\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_6c10b027c9c782c4353d69d63db0cb06cd7c2c5e\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="F:\andoid\videoshoter\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="e37d82d18afae847df9414d9c5bc7f08f7547559">
-        <dex dex="F:\andoid\videoshoter\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_a18a8be45b366c89c79e39d932aeb97f2ead8139\classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\lenovo\.android\build-cache\6c9ab844601662e133a958f2206dc606221d9169\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
-        <dex dex="F:\andoid\videoshoter\app\build\intermediates\pre-dexed\release\classes_3b3a04ae348a639d1e80ddea66286a554898e4a5.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\lenovo\.android\build-cache\35a7964e84b7d81b2e87369092dc3d72d63f7fa8\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="722acae466ccefebedf8a6631384e83bf3139f7c">
-        <dex dex="F:\andoid\videoshoter\app\build\intermediates\pre-dexed\release\classes_6c10b027c9c782c4353d69d63db0cb06cd7c2c5e.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\lenovo\.android\build-cache\6c9ab844601662e133a958f2206dc606221d9169\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
-        <dex dex="F:\andoid\videoshoter\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_3b3a04ae348a639d1e80ddea66286a554898e4a5\classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\lenovo\.android\build-cache\029a655d28ba57eecdcf6bf2f3f584930b6e7858\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
-        <dex dex="F:\andoid\videoshoter\app\build\intermediates\pre-dexed\release\classes_80c8b827c54cd799dbe401a2d53abdda7df20582.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\lenovo\.android\build-cache\477930102e4f1f6b2a606fa221ec6779497a9e88\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
-        <dex dex="F:\andoid\videoshoter\app\build\intermediates\pre-dexed\release\classes_e28d910f48115a689faa9d7167c9809427fc2ea7.jar" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\lenovo\.android\build-cache\477930102e4f1f6b2a606fa221ec6779497a9e88\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
-        <dex dex="F:\andoid\videoshoter\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_e28d910f48115a689faa9d7167c9809427fc2ea7\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\lenovo\.android\build-cache\769021ed809c42b307608bc639d452dee6516a2e\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
-        <dex dex="F:\andoid\videoshoter\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_313489121042f76d908b97201d7a28734becfd3e\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="E:\androidsdk\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
         jumboMode="true"
         optimize="true"
@@ -111,6 +30,24 @@
     </item>
     <item
         is-multidex="true"
+        jar="C:\Users\lenovo\.android\build-cache\35a7964e84b7d81b2e87369092dc3d72d63f7fa8\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="722acae466ccefebedf8a6631384e83bf3139f7c">
+        <dex dex="F:\andoid\videoshoter\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_6c10b027c9c782c4353d69d63db0cb06cd7c2c5e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="F:\andoid\videoshoter\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="75830814a6b9f7f8867268f64b4b0e31a1893c8e">
+        <dex dex="F:\andoid\videoshoter\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_a18a8be45b366c89c79e39d932aeb97f2ead8139\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
         jar="C:\Users\lenovo\.android\build-cache\029a655d28ba57eecdcf6bf2f3f584930b6e7858\output\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -120,12 +57,39 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\Users\lenovo\.android\build-cache\6c9ab844601662e133a958f2206dc606221d9169\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="F:\andoid\videoshoter\app\build\intermediates\pre-dexed\release\classes_3b3a04ae348a639d1e80ddea66286a554898e4a5.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\lenovo\.android\build-cache\aef453be5b2236011b2c3bf6c27e66c38115fbf4\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
         <dex dex="F:\andoid\videoshoter\app\build\intermediates\pre-dexed\release\classes_722d90c44f7c59bd097c6d13576274dcf85de423.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\lenovo\.android\build-cache\35a7964e84b7d81b2e87369092dc3d72d63f7fa8\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="722acae466ccefebedf8a6631384e83bf3139f7c">
+        <dex dex="F:\andoid\videoshoter\app\build\intermediates\pre-dexed\release\classes_6c10b027c9c782c4353d69d63db0cb06cd7c2c5e.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\lenovo\.android\build-cache\6c9ab844601662e133a958f2206dc606221d9169\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="F:\andoid\videoshoter\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_3b3a04ae348a639d1e80ddea66286a554898e4a5\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -138,12 +102,39 @@
     </item>
     <item
         is-multidex="false"
+        jar="C:\Users\lenovo\.android\build-cache\029a655d28ba57eecdcf6bf2f3f584930b6e7858\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="F:\andoid\videoshoter\app\build\intermediates\pre-dexed\release\classes_80c8b827c54cd799dbe401a2d53abdda7df20582.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\lenovo\.android\build-cache\477930102e4f1f6b2a606fa221ec6779497a9e88\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="F:\andoid\videoshoter\app\build\intermediates\pre-dexed\release\classes_e28d910f48115a689faa9d7167c9809427fc2ea7.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="C:\Users\lenovo\.android\build-cache\72631abe4a24b591b82d179b41e4fee2e5c10668\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.0"
         sha1="5326d9a850d491714fef8cbfaa9ea3416f0bf0d2">
         <dex dex="F:\andoid\videoshoter\app\build\intermediates\pre-dexed\release\classes_cb551774068bf84f21caf9849242d9b2bd32b10c.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\lenovo\.android\build-cache\477930102e4f1f6b2a606fa221ec6779497a9e88\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="F:\andoid\videoshoter\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_e28d910f48115a689faa9d7167c9809427fc2ea7\classes.dex" />
     </item>
     <item
         is-multidex="false"
@@ -162,6 +153,15 @@
         revision="25.0.0"
         sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
         <dex dex="F:\andoid\videoshoter\app\build\intermediates\pre-dexed\release\internal_impl-23.4.0_ff997f49423a3541567f9149500460ee9f7c0e41.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\lenovo\.android\build-cache\769021ed809c42b307608bc639d452dee6516a2e\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
+        <dex dex="F:\andoid\videoshoter\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_313489121042f76d908b97201d7a28734becfd3e\classes.dex" />
     </item>
     <item
         is-multidex="true"

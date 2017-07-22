@@ -31,3 +31,5 @@ proguard/
 .gradle/
 
 /app/build/
+
+/build

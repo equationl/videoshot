@@ -67,8 +67,8 @@ public class tools {
     /**
      * 从文件获取图片的bitmap
     * */
-    public Bitmap getBitmapFromFile(int no, File dirPath, String extension) throws Exception {
-        File path = new File(dirPath, +no+""+"."+extension);
+    public Bitmap getBitmapFromFile(String no, File dirPath, String extension) throws Exception {
+        File path = new File(dirPath, no+"."+extension);
         FileInputStream f;
         Bitmap bm = null;
         f = new FileInputStream(path);

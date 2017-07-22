@@ -154,6 +154,10 @@ public class makePictureActivity extends AppCompatActivity {
                                         && (Math.abs(mCurPosY - mPosY) > 200)) {
                                     //向下滑動
                                     //Toast.makeText(getApplicationContext(),"向下滑动",Toast.LENGTH_SHORT).show();
+                                    if (fileList[pic_no].equals("text")) {
+                                        Toast.makeText(makePictureActivity.this, "添加文字后不允许裁切！", Toast.LENGTH_SHORT).show();
+                                        break;
+                                    }
                                     tip_text.setText("裁切");
                                     tip_text.setVisibility(View.VISIBLE);
                                     autoHideText();
@@ -202,16 +206,23 @@ public class makePictureActivity extends AppCompatActivity {
                                                         text_size = Integer.parseInt(edit_size.getText().toString());
                                                     }
 
-                                                    Log.i("ccccc",text);
-                                                    Bitmap bm = addBitmap(getBitmapFromFile(pic_no),addTextToImage(getBitmapFromFile(pic_no),text,text_size,text_color));
+                                                    //Log.i("ccccc",text);
+                                                    Bitmap bm;
+                                                    if (pic_no<pic_num && fileList[pic_no].equals("text")) {
+                                                        bm = addBitmap(getBitmapFromFile(pic_no+"_t"),addTextToImage(getBitmapFromFile(pic_no+"_t"),text,text_size,text_color));
+                                                    }
+                                                    else {
+                                                        bm = addBitmap(getBitmapFromFile(pic_no+""),addTextToImage(getBitmapFromFile(pic_no+""),text,text_size,text_color));
+                                                    }
                                                     try {
-                                                        saveMyBitmap(bm,pic_no+"");
+                                                        saveMyBitmap(bm,pic_no+"_t");
                                                     }
                                                     catch (IOException e) {
                                                         Log.i("excuse me?",e.toString());
                                                         Toast.makeText(getApplicationContext(),"写入缓存失败！"+e.toString(),Toast.LENGTH_LONG).show();
                                                     }
-                                                    set_image(pic_no);
+                                                    set_image(pic_no, "_t");
+                                                    fileList[pic_no] = "text";
                                                     break;
                                                 case Dialog.BUTTON_NEGATIVE:
                                                     break;
@@ -265,12 +276,21 @@ public class makePictureActivity extends AppCompatActivity {
     }
 
     private void set_image(int  no) {
+        set_image(no, "null");
+    }
+
+    private void set_image(int no, String flag) {
         if (no < pic_num) {
-            imagview.setImageBitmap(getBitmapFromFile(no));
+            if (!flag.equals("null")) {
+                imagview.setImageBitmap(getBitmapFromFile(no+flag));
+            }
+            else {
+                imagview.setImageBitmap(getBitmapFromFile(no+""));
+            }
         }
     }
 
-    private Bitmap getBitmapFromFile(int no) {
+    private Bitmap getBitmapFromFile(String no) {
         /*File path = new File(getExternalCacheDir(), +no+""+".png");
         FileInputStream f;
         Bitmap bm = null;
@@ -460,7 +480,8 @@ public class makePictureActivity extends AppCompatActivity {
         double x_d = Math.abs(x-x_l);
         double y_d = Math.abs(y-y_l);
 
-        if (delay<500 && pic_no>0 && x_d<20 && y_d<20) {
+        if (delay<500 && x_d<20 && y_d<20 && (pic_no>0
+                || fileList[pic_no].equals("text"))) {
             handler.sendEmptyMessage(HandlerStatusLongIsWorking);
         }
         callWithdrawTime = time_now;
@@ -481,10 +502,16 @@ public class makePictureActivity extends AppCompatActivity {
                     tip_text.setText("撤销");
                     tip_text.setVisibility(View.VISIBLE);
                     autoHideText();
-                    nums_tip_text.setText((pic_no+"/")+pic_num);
-                    set_image(pic_no-1);
-                    fileList[pic_no-1] = "del";
-                    pic_no--;
+                    if (pic_no<pic_num && fileList[pic_no].equals("text")) {
+                        set_image(pic_no);
+                        fileList[pic_no] = "del";
+                    }
+                    else {
+                        nums_tip_text.setText((pic_no+"/")+pic_num);
+                        set_image(pic_no-1);
+                        fileList[pic_no-1] = "del";
+                        pic_no--;
+                    }
                     break;
                 case HandlerStatusIsLongPress:
                     isLongPress = false;

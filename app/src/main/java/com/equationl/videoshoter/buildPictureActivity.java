@@ -61,7 +61,7 @@ public class buildPictureActivity extends AppCompatActivity {
         Bundle bundle = this.getIntent().getExtras();
         fileList = bundle.getStringArray("fileList");
 
-        Log.i("filelist", fileList.toString());
+        //Log.i("filelist", fileList.toString());
 
         dialog = new ProgressDialog(this);
         dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);// 设置样式
@@ -165,7 +165,7 @@ public class buildPictureActivity extends AppCompatActivity {
 
     }
 
-    private Bitmap getBitmap(int no) {
+    private Bitmap getBitmap(String no) {
         /*File path = new File(getExternalCacheDir(), no+".png");
         FileInputStream f;
         Bitmap bm = null;
@@ -201,10 +201,10 @@ public class buildPictureActivity extends AppCompatActivity {
     private Bitmap getCutImg() {
         for (int i=0;i<fileList.length;i++) {
             if (fileList[i].equals("cut")) {
-                return getBitmap(i);
+                return getBitmap(i+"");
             }
         }
-        return getBitmap(0);
+        return getBitmap(0+"");
     }
 
     private Handler handler = new Handler() {
@@ -275,14 +275,21 @@ public class buildPictureActivity extends AppCompatActivity {
                 Log.i("test,final file width:",final_bitmap.getWidth()+"");
                 Log.i("test,final file height:",final_bitmap.getHeight()+"");  */
                 if (fileList[i].equals("cut")) {
-                    final_bitmap = addBitmap(final_bitmap,cutBimap(getBitmap(i)));
+                    final_bitmap = addBitmap(final_bitmap,cutBimap(getBitmap(i+"")));
                     msg = Message.obtain();
                     msg.obj = final_bitmap;
                     msg.what = 3;
                     handler.sendMessage(msg);
                 }
                 else if (fileList[i].equals("all")) {
-                    final_bitmap = addBitmap(final_bitmap,getBitmap(i));
+                    final_bitmap = addBitmap(final_bitmap,getBitmap(i+""));
+                    msg = Message.obtain();
+                    msg.obj = final_bitmap;
+                    msg.what = 3;
+                    handler.sendMessage(msg);
+                }
+                else if (fileList[i].equals("text")) {
+                    final_bitmap = addBitmap(final_bitmap,getBitmap(i+"_t"));
                     msg = Message.obtain();
                     msg.obj = final_bitmap;
                     msg.what = 3;

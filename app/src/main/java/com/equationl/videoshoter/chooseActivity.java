@@ -64,6 +64,7 @@ public class chooseActivity extends AppCompatActivity {
     RelativeLayout.LayoutParams params;
     FFmpeg ffmpeg;
     String path, duration_text;
+    Boolean isShowingTime = false;
     private boolean isShotFinish=false;
 
     public static chooseActivity instance = null;    //FIXME  暂时这样吧，实在找不到更好的办法了
@@ -71,6 +72,7 @@ public class chooseActivity extends AppCompatActivity {
 
     private static final int HandlerStatusHideTime = 10010;
     private static final int HandlerStatusShowTime = 10011;
+    private static final int HandlerStatusUpdateTime = 10012;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -330,9 +332,11 @@ public class chooseActivity extends AppCompatActivity {
                     startActivity(intent);
                     break;
                 case HandlerStatusHideTime:
+                    isShowingTime = false;
                     video_time.setVisibility(View.GONE);
                     break;
                 case HandlerStatusShowTime:
+                    isShowingTime = true;
                     video_time.setVisibility(View.VISIBLE);
                     String res;
                     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
@@ -343,7 +347,23 @@ public class chooseActivity extends AppCompatActivity {
                     res += "/"+duration_text;
                     video_time.setText(res);
                     autoHideTime();
+                    if (videoview.isPlaying() && isShowingTime) {
+                        handler.sendEmptyMessageDelayed(HandlerStatusUpdateTime, 200);
+                    }
                     Log.i("test", "res="+res);
+                    break;
+                case HandlerStatusUpdateTime:
+                    //video_time.setVisibility(View.VISIBLE);
+                    simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+                    simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+                    lt = new Long(videoview.getCurrentPosition());
+                    date = new Date(lt);
+                    res = simpleDateFormat.format(date);
+                    res += "/"+duration_text;
+                    video_time.setText(res);
+                    if (videoview.isPlaying() && isShowingTime) {
+                        handler.sendEmptyMessageDelayed(HandlerStatusUpdateTime, 200);
+                    }
                     break;
             }
 
@@ -508,7 +528,7 @@ public class chooseActivity extends AppCompatActivity {
                     handler.sendEmptyMessage(HandlerStatusHideTime);
                     tHide = null;
                 }
-            }, 1000);
+            }, 2000);
         }
     }
 
