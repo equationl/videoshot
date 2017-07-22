@@ -124,16 +124,18 @@ public class makePictureActivity extends AppCompatActivity {
                         case MotionEvent.ACTION_DOWN:
                             mPosX = event.getX();
                             mPosY = event.getY();
-                            checkIsLongPress(false);
+                            /*checkIsLongPress(false);
+                            Log.i("test", "in ACTION_DOWN");  */
+                            withdrawStep(mPosX, mPosY);
                             break;
                         case MotionEvent.ACTION_MOVE:
                             mCurPosX = event.getX();
                             mCurPosY = event.getY();
                             offsetX = mPosX - mCurPosX;
                             offsetY = mPosY - mCurPosY;
-                            if (Math.abs(offsetX)<200 && Math.abs(offsetY)<200) {
+                            /*if (Math.abs(offsetX)<400 && Math.abs(offsetY)<400) {
                                 checkIsLongPress(true);
-                            }
+                            }*/
                             break;
                         case MotionEvent.ACTION_SCROLL:
 
@@ -449,6 +451,24 @@ public class makePictureActivity extends AppCompatActivity {
             }
         }
     }
+
+    long callWithdrawTime = 0;
+    double x_l, y_l;
+    private void withdrawStep(double x, double y) {
+        long time_now = System.currentTimeMillis();
+        long delay = time_now-callWithdrawTime;
+        double x_d = Math.abs(x-x_l);
+        double y_d = Math.abs(y-y_l);
+
+        if (delay<500 && pic_no>0 && x_d<20 && y_d<20) {
+            handler.sendEmptyMessage(HandlerStatusLongIsWorking);
+        }
+        callWithdrawTime = time_now;
+        x_l = x;
+        y_l = y;
+    }
+
+
 
     private Handler handler = new Handler() {
         @Override

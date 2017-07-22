@@ -63,13 +63,14 @@ public class chooseActivity extends AppCompatActivity {
     tools tool = new com.equationl.videoshoter.videoImg.tools();
     RelativeLayout.LayoutParams params;
     FFmpeg ffmpeg;
-    String path;
+    String path, duration_text;
     private boolean isShotFinish=false;
 
     public static chooseActivity instance = null;    //FIXME  暂时这样吧，实在找不到更好的办法了
 
 
     private static final int HandlerStatusHideTime = 10010;
+    private static final int HandlerStatusShowTime = 10011;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +101,7 @@ public class chooseActivity extends AppCompatActivity {
         Log.i("el_test: video path=", path);
 
         uri = getIntent().getData();
-        videoview.setMediaController(new MediaController(this));
+        //videoview.setMediaController(new MediaController(this));
         videoview.setVideoURI(uri);
 
         MediaMetadataRetriever rev = new MediaMetadataRetriever();
@@ -110,6 +111,11 @@ public class chooseActivity extends AppCompatActivity {
         Bitmap bitmap = rev.getFrameAtTime(((duration/2)*1000),
                     MediaMetadataRetriever.OPTION_CLOSEST_SYNC);
         videoview.setBackground(new BitmapDrawable(bitmap));
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+        Date date = new Date(duration);
+        duration_text = simpleDateFormat.format(date);
 
         mGestureDetector = new GestureDetector(this, mGestureListener);
         videoview.setOnTouchListener(new View.OnTouchListener() {
@@ -326,6 +332,19 @@ public class chooseActivity extends AppCompatActivity {
                 case HandlerStatusHideTime:
                     video_time.setVisibility(View.GONE);
                     break;
+                case HandlerStatusShowTime:
+                    video_time.setVisibility(View.VISIBLE);
+                    String res;
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+                    simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
+                    long lt = new Long(videoview.getCurrentPosition());
+                    Date date = new Date(lt);
+                    res = simpleDateFormat.format(date);
+                    res += "/"+duration_text;
+                    video_time.setText(res);
+                    autoHideTime();
+                    Log.i("test", "res="+res);
+                    break;
             }
 
         }
@@ -428,6 +447,8 @@ public class chooseActivity extends AppCompatActivity {
         @Override
         public boolean onSingleTapUp(MotionEvent e) {
             Log.i("test", "单击屏幕");
+            handler.sendEmptyMessage(HandlerStatusShowTime);
+
             if (settings.getBoolean("isHideButton", false) && isORIENTATION_LANDSCAPE) {
                 if (isHideBtn) {
                     btn_status.setVisibility(View.VISIBLE);
@@ -458,6 +479,7 @@ public class chooseActivity extends AppCompatActivity {
             long lt = new Long(videoview.getCurrentPosition());
             Date date = new Date(lt);
             res = simpleDateFormat.format(date);
+            res += "/"+duration_text;
             video_time.setText(res);
             autoHideTime();
 
