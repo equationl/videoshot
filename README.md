@@ -1,4 +1,5 @@
 优先在OSC更新：[http://git.oschina.net/equation/video_shot](http://git.oschina.net/equation/video_shot)
+
 I will push it to osc（ [http://git.oschina.net/equation/video_shot](http://git.oschina.net/equation/video_shot) ） first.
 
 经常在网上看到别人制作的电影台词的长截图？想要自己制作一张？一张一张截图后剪切再拼接很麻烦？ 
@@ -10,5 +11,10 @@ I will push it to osc（ [http://git.oschina.net/equation/video_shot](http://git
 还支持自定义裁剪范围，甚至是保留整张截图。
 
 
+I don't know how to translate it to English,please use Google translate by yourself.
+
+
 已编译好的APK请看 [http://www.coolapk.com/apk/com.equationl.videoshoter](http://www.coolapk.com/apk/com.equationl.videoshoter) 
-The apk file please go to: [http://www.coolapk.com/apk/com.equationl.videoshoter](http://www.coolapk.com/apk/com.equationl.videoshoter) 
+
+
+The apk file please see: [http://www.coolapk.com/apk/com.equationl.videoshoter](http://www.coolapk.com/apk/com.equationl.videoshoter) 
